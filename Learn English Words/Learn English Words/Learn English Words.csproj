@@ -10,12 +10,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\img_dictionaries.png" />
+    <None Remove="Images\img_exit.png" />
+    <None Remove="Images\img_home.png" />
+    <None Remove="Images\img_tests.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\img_dictionaries.png" />
+    <Resource Include="Images\img_exit.png" />
+    <Resource Include="Images\img_home.png" />
+    <Resource Include="Images\img_tests.png" />
   </ItemGroup>
 
 </Project>

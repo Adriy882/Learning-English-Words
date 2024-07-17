@@ -14,7 +14,7 @@ namespace Learn_English_Words.Models
         public string TranslateWord { get; set; }
         public string? Description { get; set; }
 
-        public string NameChapter { get; set; } // Зовнішній ключ
+        public string NameChapter { get; set; }
 
         public Chapter Chapter { get; set; }
     }
