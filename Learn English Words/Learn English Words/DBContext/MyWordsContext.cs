@@ -26,7 +26,6 @@ namespace Learn_English_Words.DBContext
             {
                 if (configuration == null)
                 {
-                    // Встановлення каталогу для пошуку appsettings.json
                     configuration = new ConfigurationBuilder()
                         .SetBasePath(Directory.GetCurrentDirectory())
                         .AddJsonFile("appsettings.json")

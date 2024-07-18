@@ -11,7 +11,7 @@ namespace Learn_English_Words.Models
     {
         public string NameChapter { get; set; }
         public string? Description { get; set; }
-        public ICollection<Word> Words { get; set; } // Навігаційна властивість
+        public ICollection<Word> Words { get; set; }
     }
 
 }
