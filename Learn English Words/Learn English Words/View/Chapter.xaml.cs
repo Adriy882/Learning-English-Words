@@ -24,5 +24,41 @@ namespace Learn_English_Words.View
         {
             InitializeComponent();
         }
+
+        private void DeleteChapterButton_Click(object sender, RoutedEventArgs e)
+        {
+            ConfirmationButtons.Visibility = Visibility.Visible;
+        }
+        private void NoButton_Click(object sender, RoutedEventArgs e)
+        {
+            ConfirmationButtons.Visibility = Visibility.Hidden;
+        }
+        private void YesButton_Click(object sender, RoutedEventArgs e)
+        {
+            ConfirmationButtons.Visibility = Visibility.Hidden;
+        }
+
+        private void txtDescription_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDescription.Text))
+            {
+                DescriptionConfirmationButtons.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DescriptionConfirmationButtons.Visibility = Visibility.Collapsed;
+            }
+        }
+        private void NoDescriptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            DescriptionConfirmationButtons.Visibility = Visibility.Collapsed;
+        }
+
+        private void YesDescriptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            DescriptionConfirmationButtons.Visibility = Visibility.Collapsed;
+        }
+
+
     }
 }
