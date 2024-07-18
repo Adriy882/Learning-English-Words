@@ -15,4 +15,8 @@
         <view:Test />
     </DataTemplate>
     
+    <DataTemplate DataType="{x:Type vm:ChapterVM}">
+        <view:Chapter />
+    </DataTemplate>
+    
 </ResourceDictionary>

@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\img_chapter.png" />
     <None Remove="Images\img_dictionaries.png" />
     <None Remove="Images\img_exit.png" />
     <None Remove="Images\img_home.png" />
@@ -27,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\img_chapter.png" />
     <Resource Include="Images\img_dictionaries.png" />
     <Resource Include="Images\img_exit.png" />
     <Resource Include="Images\img_home.png" />

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Learn_English_Words.Utilities;
 using System.Windows.Input;
+using Learn_English_Words.Models;
 
 namespace Learn_English_Words.ViewModel
 {
@@ -20,19 +21,19 @@ namespace Learn_English_Words.ViewModel
         public ICommand HomeCommand { get; set; }
         public ICommand DictionaryCommand { get; set; }
         public ICommand TestsCommand { get; set; }
- 
+        public ICommand ChaptersCommand { get; set; }
 
         private void Home(object obj) => CurrentView = new HomeVM();
         private void Dictionary(object obj) => CurrentView = new DictionaryVM();
         private void Test(object obj) => CurrentView = new TestVM();
- 
 
+        private void Chapter(object obj) => CurrentView = new ChapterVM();
         public NavigationVM()
         {
             HomeCommand = new RelayCommand(Home);
             DictionaryCommand = new RelayCommand(Dictionary);
             TestsCommand = new RelayCommand(Test);
- 
+            ChaptersCommand = new RelayCommand(Chapter);
 
             // Startup Page
             CurrentView = new HomeVM();
