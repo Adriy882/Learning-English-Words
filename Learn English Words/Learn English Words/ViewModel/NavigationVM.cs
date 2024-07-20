@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using Learn_English_Words.Utilities;
 using System.Windows.Input;
 using Learn_English_Words.Models;
+using Learn_English_Words.Services.ChapterProviders;
 
 namespace Learn_English_Words.ViewModel
 {
     class NavigationVM : ViewModelBase
     {
+        private readonly IChapterProviders _providers;
         private object _currentView;
         public object CurrentView
         {
@@ -27,9 +29,10 @@ namespace Learn_English_Words.ViewModel
         private void Dictionary(object obj) => CurrentView = new DictionaryVM();
         private void Test(object obj) => CurrentView = new TestVM();
 
-        private void Chapter(object obj) => CurrentView = new ChapterVM();
-        public NavigationVM()
+        private void Chapter(object obj) => CurrentView = new ChapterVM(_providers);
+        public NavigationVM(IChapterProviders providers)
         {
+            _providers = providers;
             HomeCommand = new RelayCommand(Home);
             DictionaryCommand = new RelayCommand(Dictionary);
             TestsCommand = new RelayCommand(Test);

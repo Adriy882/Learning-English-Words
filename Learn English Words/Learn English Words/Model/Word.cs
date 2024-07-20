@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Learn_English_Words.Models
 {
-    internal class Word
+    public class Word
     {
         public int Id { get; set; }
         public string EnglishWord { get; set; }

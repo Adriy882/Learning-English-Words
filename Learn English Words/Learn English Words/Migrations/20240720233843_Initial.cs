@@ -5,7 +5,7 @@
 namespace Learn_English_Words.Migrations
 {
     /// <inheritdoc />
-    public partial class WordAndChapterConfiguration : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,8 +14,8 @@ namespace Learn_English_Words.Migrations
                 name: "Chapters",
                 columns: table => new
                 {
-                    NameChapter = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true)
+                    NameChapter = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,12 +26,12 @@ namespace Learn_English_Words.Migrations
                 name: "Words",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EnglishWord = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    TranslateWord = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    NameChapter = table.Column<string>(type: "nvarchar(30)", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    EnglishWord = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    TranslateWord = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 255, nullable: true),
+                    NameChapter = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

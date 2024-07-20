@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Learn_English_Words.Models
 {
-    class Chapter
+    public class Chapter
     {
         public string NameChapter { get; set; }
         public string? Description { get; set; }
