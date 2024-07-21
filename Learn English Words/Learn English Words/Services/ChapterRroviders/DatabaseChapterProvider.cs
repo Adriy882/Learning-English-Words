@@ -107,5 +107,18 @@ namespace Learn_English_Words.Services.ChapterProviders
             chapter.Description = "";
             return chapter;
         }
+        public async Task UpdateDescription(string nameChapter, string newDescription)
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                var chapter = await context.Chapters.FirstOrDefaultAsync(c => c.NameChapter == nameChapter);
+                if (chapter != null)
+                {
+                    chapter.Description = newDescription;
+                    await context.SaveChangesAsync();
+                }
+            }
+        }
+
     }
 }

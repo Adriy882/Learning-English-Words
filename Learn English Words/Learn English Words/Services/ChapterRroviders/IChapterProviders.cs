@@ -12,5 +12,6 @@ namespace Learn_English_Words.Services.ChapterProviders
         Task UpdateChapterName(string oldNameChapter, string newNameChapter);
         Task Delete(string nameChapter);
         Task CreateChapter(string NameChapter);
+        Task UpdateDescription(string NameChapter, string NewDescription);
     }
 }
