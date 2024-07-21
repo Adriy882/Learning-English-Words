@@ -55,6 +55,7 @@ namespace Learn_English_Words.Services.ChapterProviders
 
                     var newChapter = new Chapter
                     {
+                        Description = chapter.Description,
                         NameChapter = newNameChapter
                     };
                     context.Chapters.Add(newChapter);

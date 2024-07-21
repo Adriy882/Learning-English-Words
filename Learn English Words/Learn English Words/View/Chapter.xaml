@@ -9,11 +9,6 @@
              d:DesignWidth="850"
              Style="{StaticResource Page_Style}">
 
-    <UserControl.DataContext>
-        <vm:ChapterVM/>
-    </UserControl.DataContext>
-
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="630"/>
@@ -25,24 +20,24 @@
             <Border Width="570" Height="540" BorderBrush="White" BorderThickness="2">
 
                 <WrapPanel Orientation="Vertical" Background="#FF061918">
-                    <Label Content="Name chapter:" FontSize="16" Foreground="White" Margin="0,30,0,0"/>
-                    <Label Content="Word count:" FontSize="16" Foreground="White" Margin="0,30,0,0"/>
+                    <Label Content="{Binding LabelNameChapter}" FontSize="16" Foreground="White" Margin="0,30,0,0"/>
+                    <Label Content="{Binding LabelCountWord}" FontSize="16" Foreground="White" Margin="0,30,0,0"/>
 
                     <WrapPanel Orientation="Horizontal" Background="#FF061918" Margin="0,30,0,0">
                         <Label Content="Description:" FontSize="16" Foreground="White"  />
-                        <TextBox x:Name="txtDescription" Style="{StaticResource ChapterTextBox_Style}" TextChanged="txtDescription_TextChanged"/>
+                        <TextBox x:Name="txtDescription" Style="{StaticResource ChapterTextBox_Style}"  Text="{Binding tbDescription, UpdateSourceTrigger=PropertyChanged}" MaxLength="250"/>
                     </WrapPanel>
 
-                    <!-- Buttons Yes No -->
-                    <WrapPanel x:Name="DescriptionConfirmationButtons" Orientation="Horizontal" Width="200" HorizontalAlignment="Right" Visibility="Hidden" >
+                    <!-- Buttons Yes No TextChanged="txtDescription_TextChanged" -->
+                    <WrapPanel x:Name="DescriptionConfirmationButtons" Orientation="Horizontal" Width="200" HorizontalAlignment="Right" Visibility="{Binding IsDescriptionChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                        <Button x:Name="NoDescriptionButton" Margin="0,10,95,0" Height="50" Width="50" Background="Transparent" Click="NoDescriptionButton_Click" >
+                        <Button x:Name="NoDescriptionButton" Margin="0,10,95,0" Height="50" Width="50" Background="Transparent" Command="{Binding NoChangeCommand}">
                             <Button.Content>
                                 <Image Source="pack://application:,,,/Images/img_no.png"/>
                             </Button.Content>
                         </Button>
 
-                        <Button x:Name="YesDescriptionButton"   Margin="0,10,0,0" Height="50" Width="50"  Background="Transparent"  Click="YesDescriptionButton_Click" >
+                        <Button x:Name="YesDescriptionButton" Margin="0,10,0,0" Height="50" Width="50"  Background="Transparent" Command="{Binding YesChangeCommand}">
                             <Button.Content>
                                 <Image Source="pack://application:,,,/Images/img_yes.png"/>
                             </Button.Content>
@@ -59,36 +54,28 @@
         <Grid Grid.Column="1" HorizontalAlignment="Right"   >
             <WrapPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0,50,0,10" >
                 <!-- ComboBox -->
-                <ComboBox x:Name="cmbChapter" Style="{StaticResource ComboBoxDictionaryStyle}" Margin="5,10">
-                    <ComboBoxItem Content="Item 1" IsSelected="True"/>
-                    <ComboBoxItem Content="Item 2"/>
-                    <ComboBoxItem Content="Item 3"/>
-                    <ComboBoxItem Content="Item 1" IsSelected="True"/>
-                    <ComboBoxItem Content="Item 2"/>
-                    <ComboBoxItem Content="Item 3"/>
-                    <ComboBoxItem Content="Item 1" IsSelected="True"/>
-                    <ComboBoxItem Content="Item 2"/>
-                    <ComboBoxItem Content="Item 3"/>
-                </ComboBox>
-
-
+                <ComboBox x:Name="cmbChapter"
+                  ItemsSource="{Binding ChapterNames}"
+                  SelectedItem="{Binding SelectedChapterName, Mode=TwoWay}"
+                  Style="{StaticResource ComboBoxDictionaryStyle}"
+                  Margin="5,10"/>
 
                 <!-- Buttons -->
-                <Button Content="Add chapter" Style="{StaticResource DictionaryButtonStyle}" Margin="0,10,5,0"/>
-                <TextBox Grid.Column="1" Style="{StaticResource TextBox_Style}"  Width="200" HorizontalAlignment="Center" Margin="0,0,5,0"/>
-                <Button Content="Rename" Style="{StaticResource DictionaryButtonStyle}" Margin="0,10,5,0"/>
-                <TextBox Grid.Column="1" Style="{StaticResource TextBox_Style}" Width="200" HorizontalAlignment="Center"  Margin="0,0,5,0"/>
-                <Button x:Name="DeleteChapterButton" Content="Delete chapter" Style="{StaticResource DictionaryButtonStyle}" Margin="0,10,5,0" Click="DeleteChapterButton_Click" />
+                <Button Content="Add chapter" Style="{StaticResource DictionaryButtonStyle}" Margin="0,10,5,0"  Command="{Binding AddChapterCommand}"/>
+                <TextBox Text="{Binding tbAddChapter, Mode=TwoWay}" Style="{StaticResource TextBox_Style}"  Width="200" HorizontalAlignment="Center" Margin="0,0,5,0" MaxLength="30"/>
+                <Button Content="Rename" Style="{StaticResource DictionaryButtonStyle}" Margin="0,10,5,0" Command="{Binding RenameChapterCommand}"/>
+                <TextBox Text="{Binding tbRenameChapter, Mode=TwoWay}" Style="{StaticResource TextBox_Style}" Width="200" HorizontalAlignment="Center"  Margin="0,0,5,0" MaxLength="30"/>
+                <Button x:Name="DeleteChapterButton" Content="Delete chapter" Style="{StaticResource DictionaryButtonStyle}" Margin="0,10,5,0" Command="{Binding DeleteChapterCommand}" />
 
                 <!-- Buttons Yes No -->
-                <WrapPanel x:Name="ConfirmationButtons" Orientation="Horizontal" Width="200" Visibility="Hidden" >
-                    <Button x:Name="NoButton" Margin="0,10,95,0" Height="50" Width="50" Background="Transparent" Click="NoButton_Click" >
+                <WrapPanel x:Name="ConfirmationButtons" Orientation="Horizontal" Width="200"  Visibility="{Binding IsDeletedChapter, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Button x:Name="NoButton" Margin="0,10,95,0" Height="50" Width="50" Background="Transparent" Command="{Binding NoDeleteCommand}">
                         <Button.Content>
                             <Image Source="pack://application:,,,/Images/img_no.png"/>
                         </Button.Content>
                     </Button>
 
-                    <Button x:Name="YesButton"   Margin="0,10,0,0" Height="50" Width="50"  Background="Transparent"  Click="YesButton_Click" >
+                    <Button x:Name="YesButton"  Margin="0,10,0,0" Height="50" Width="50"  Background="Transparent" Command="{Binding YesDeleteCommand}">
                         <Button.Content>
                             <Image Source="pack://application:,,,/Images/img_yes.png"/>
                         </Button.Content>

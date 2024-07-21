@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace Learn_English_Words.Utilities
 {
     // Base class implementing INotifyPropertyChanged for MVVM pattern
-    class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         // Event triggered when a property value changes
         public event PropertyChangedEventHandler PropertyChanged;
