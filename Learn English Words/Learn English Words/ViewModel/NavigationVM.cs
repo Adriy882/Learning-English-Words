@@ -7,12 +7,14 @@ using Learn_English_Words.Utilities;
 using System.Windows.Input;
 using Learn_English_Words.Models;
 using Learn_English_Words.Services.ChapterProviders;
+using Learn_English_Words.Services.WordProviders;
 
 namespace Learn_English_Words.ViewModel
 {
     class NavigationVM : ViewModelBase
     {
         private readonly IChapterProviders _providers;
+        private readonly IWordProviders _wordProviders;
         private object _currentView;
         public object CurrentView
         {
@@ -26,13 +28,14 @@ namespace Learn_English_Words.ViewModel
         public ICommand ChaptersCommand { get; set; }
 
         private void Home(object obj) => CurrentView = new HomeVM();
-        private void Dictionary(object obj) => CurrentView = new DictionaryVM();
+        private void Dictionary(object obj) => CurrentView = new DictionaryVM(_wordProviders);
         private void Test(object obj) => CurrentView = new TestVM();
 
         private void Chapter(object obj) => CurrentView = new ChapterVM(_providers);
-        public NavigationVM(IChapterProviders providers)
+        public NavigationVM(IChapterProviders providers, IWordProviders wordProviders)
         {
             _providers = providers;
+            _wordProviders = wordProviders;
             HomeCommand = new RelayCommand(Home);
             DictionaryCommand = new RelayCommand(Dictionary);
             TestsCommand = new RelayCommand(Test);

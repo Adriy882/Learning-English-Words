@@ -1,10 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using Learn_English_Words.Services.WordProviders;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace Learn_English_Words.ViewModel
 {
     public class DictionaryVM : INotifyPropertyChanged
     {
+        private readonly IWordProviders _providers;
         private ObservableCollection<Word> words;
         public ObservableCollection<Word> Words
         {
@@ -16,9 +18,9 @@ namespace Learn_English_Words.ViewModel
             }
         }
 
-        public DictionaryVM()
+        public DictionaryVM(IWordProviders providers)
         {
-
+            _providers = providers;
             LoadWords();
         }
 
