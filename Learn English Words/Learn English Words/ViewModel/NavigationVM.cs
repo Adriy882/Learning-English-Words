@@ -13,7 +13,7 @@ namespace Learn_English_Words.ViewModel
 {
     class NavigationVM : ViewModelBase
     {
-        private readonly IChapterProviders _providers;
+        private readonly IChapterProviders _chapterProviders;
         private readonly IWordProviders _wordProviders;
         private object _currentView;
         public object CurrentView
@@ -28,13 +28,13 @@ namespace Learn_English_Words.ViewModel
         public ICommand ChaptersCommand { get; set; }
 
         private void Home(object obj) => CurrentView = new HomeVM();
-        private void Dictionary(object obj) => CurrentView = new DictionaryVM(_wordProviders);
+        private void Dictionary(object obj) => CurrentView = new DictionaryVM(_wordProviders, _chapterProviders);
         private void Test(object obj) => CurrentView = new TestVM();
 
-        private void Chapter(object obj) => CurrentView = new ChapterVM(_providers);
+        private void Chapter(object obj) => CurrentView = new ChapterVM(_chapterProviders);
         public NavigationVM(IChapterProviders providers, IWordProviders wordProviders)
         {
-            _providers = providers;
+            _chapterProviders = providers;
             _wordProviders = wordProviders;
             HomeCommand = new RelayCommand(Home);
             DictionaryCommand = new RelayCommand(Dictionary);

@@ -158,8 +158,7 @@ namespace Learn_English_Words.ViewModel
         /// </summary>
         public async Task SetComboBoxAsync()
         {
-            var chapterNames = await _providers.GetAllName();
-            _nameChapters = new List<string>(chapterNames);
+            _nameChapters = await _providers.GetAllName();
             ChapterNames.Clear();
             foreach (var name in _nameChapters)
             {

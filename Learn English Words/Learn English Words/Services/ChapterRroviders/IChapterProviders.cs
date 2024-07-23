@@ -7,7 +7,7 @@ namespace Learn_English_Words.Services.ChapterProviders
     public interface IChapterProviders
     {
         Task<IEnumerable<Chapter>> GetAll();
-        Task<string[]> GetAllName();
+        Task<List<string>> GetAllName();
         Task<Chapter> GetByName(string nameChapter);
         Task UpdateChapterName(string oldNameChapter, string newNameChapter);
         Task Delete(string nameChapter);

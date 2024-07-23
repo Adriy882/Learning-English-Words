@@ -91,6 +91,7 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="MaxLength" Value="30"/>
     </Style>
 
 </ResourceDictionary>

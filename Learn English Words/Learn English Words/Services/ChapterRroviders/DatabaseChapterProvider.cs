@@ -22,14 +22,13 @@ namespace Learn_English_Words.Services.ChapterProviders
                 return await context.Chapters.ToListAsync();
             }
         }
-        public async Task<string[]> GetAllName()
+        public async Task<List<string>> GetAllName()
         {
             using (var context = _dbContextFactory.CreateDbContext())
             {
-                // Query to get all chapter names
                 var chapterNames = await context.Chapters
-                                                 .Select(c => c.NameChapter) 
-                                                 .ToArrayAsync(); 
+                                                 .Select(c => c.NameChapter)
+                                                 .ToListAsync();
 
                 return chapterNames;
             }

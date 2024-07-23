@@ -19,10 +19,13 @@
 
         <!-- DataGrid -->
         <Grid Grid.Column="0">
-            <DataGrid x:Name="dvWords"
-                      Style="{StaticResource DataGridDictionaryStyle}"
-                      Margin="10,5,10,5"
-                       ItemsSource="{Binding Words}">
+            <DataGrid Style="{StaticResource DataGridDictionaryStyle}"
+                  Margin="10,5,10,5"
+                  ItemsSource="{Binding Words}"
+                  SelectedItem="{Binding SelectedWord}"
+                  SelectionMode="Extended"
+                  CurrentCellChanged="DataGrid_CurrentCellChanged">
+
                 <!-- Columns -->
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="English" Binding="{Binding EnglishWord}" Width="*"  EditingElementStyle="{StaticResource DataGridEditingTextBoxStyle}" />
@@ -36,16 +39,9 @@
         <Grid Grid.Column="1" HorizontalAlignment="Right">
             <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,80,4,0">
                 <!-- ComboBox -->
-                <ComboBox x:Name="cmbChapter" Style="{StaticResource ComboBoxDictionaryStyle}">
-                    <ComboBoxItem Content="Item 1" IsSelected="True"/>
-                    <ComboBoxItem Content="Item 2"/>
-                    <ComboBoxItem Content="Item 3"/>
-                    <ComboBoxItem Content="Item 1" IsSelected="True"/>
-                    <ComboBoxItem Content="Item 2"/>
-                    <ComboBoxItem Content="Item 3"/>
-                    <ComboBoxItem Content="Item 1" IsSelected="True"/>
-                    <ComboBoxItem Content="Item 2"/>
-                    <ComboBoxItem Content="Item 3"/>
+                <ComboBox x:Name="cmbChapter" Style="{StaticResource ComboBoxDictionaryStyle}"  
+                   ItemsSource="{Binding ChapterNames}"
+                   SelectedItem="{Binding SelectedChapterName, Mode=TwoWay}">
                 </ComboBox>
 
                 <Grid >
@@ -54,15 +50,12 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0"  Source="pack://application:,,,/Images/img_magnifying_glass.png" Style="{StaticResource ImageDictionary_Style}"/>
-                    <TextBox Grid.Column="1" Style="{StaticResource TextBox_Style}"/>
+                    <TextBox Grid.Column="1" Style="{StaticResource TextBox_Style}"  Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
 
                 <!-- Buttons -->
-                <Button Content="Add word" Style="{StaticResource DictionaryButtonStyle}"/>
-                <Button Content="Delete word" Style="{StaticResource DictionaryButtonStyle}"/>
-                <Button Content="Print" Style="{StaticResource DictionaryButtonStyle}"/>
-                <Label Content="Word count:" FontSize="16" Foreground="White"/>
-
+                <Button Content="Add word" Style="{StaticResource DictionaryButtonStyle}" Command="{Binding AddWordCommand}"/>
+                <Button Content="Delete word" Style="{StaticResource DictionaryButtonStyle}" Command="{Binding DeleteWordCommand}"/>
             </WrapPanel>
         </Grid>
     </Grid>

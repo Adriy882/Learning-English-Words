@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Learn_English_Words.Models;
+using Learn_English_Words.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,20 @@ namespace Learn_English_Words.View
         public Dictionary()
         {
             InitializeComponent();
+
+        }
+        private void DataGrid_CurrentCellChanged(object sender, EventArgs e)
+        {
+            var viewModel = DataContext as DictionaryVM;
+            if (viewModel != null)
+            {
+                var dataGrid = sender as DataGrid;
+                var editedWord = dataGrid.SelectedItem as Word;
+                if (editedWord != null)
+                {
+                    viewModel.HandleRowEdit(editedWord);
+                }
+            }
         }
     }
 }
