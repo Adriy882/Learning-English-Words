@@ -9,7 +9,7 @@
         <Setter Property="VerticalContentAlignment"
              Value="Center" />
         <Setter Property="HorizontalAlignment"
-             Value="Right" />
+             Value="Center" />
         <Setter Property="Foreground"
              Value="White" />
         <Setter Property="BorderBrush" Value="White"/>

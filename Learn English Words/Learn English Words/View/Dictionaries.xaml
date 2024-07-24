@@ -9,8 +9,6 @@
              d:DesignWidth="850"
              Style="{StaticResource Page_Style}">
 
- 
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="640"/>
@@ -43,7 +41,7 @@
                    ItemsSource="{Binding ChapterNames}"
                    SelectedItem="{Binding SelectedChapterName, Mode=TwoWay}">
                 </ComboBox>
-
+                <!-- TextBox Search -->
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="35"/>

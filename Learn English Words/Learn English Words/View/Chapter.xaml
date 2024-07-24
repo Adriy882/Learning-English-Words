@@ -11,19 +11,19 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="630"/>
+            <ColumnDefinition Width="640"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!-- Info -->
-        <Grid Grid.Column="0" >
+        <Grid Grid.Column="0" Margin="10,5,10,5">
+            <Grid Margin="0,0,50,0">
+                <Border BorderBrush="White" BorderThickness="2">
 
-            <Border Width="570" Height="540" BorderBrush="White" BorderThickness="2">
-
-                <WrapPanel Orientation="Vertical" Background="#FF061918">
+                    <WrapPanel Orientation="Vertical" Background="#44171717">
                     <Label Content="{Binding LabelNameChapter}" FontSize="16" Foreground="White" Margin="0,30,0,0"/>
                     <Label Content="{Binding LabelCountWord}" FontSize="16" Foreground="White" Margin="0,30,0,0"/>
 
-                    <WrapPanel Orientation="Horizontal" Background="#FF061918" Margin="0,30,0,0">
+                    <WrapPanel Orientation="Horizontal" Margin="0,30,0,0">
                         <Label Content="Description:" FontSize="16" Foreground="White"  />
                         <TextBox x:Name="txtDescription" Style="{StaticResource ChapterTextBox_Style}"  Text="{Binding tbDescription, UpdateSourceTrigger=PropertyChanged}" MaxLength="250"/>
                     </WrapPanel>
@@ -46,30 +46,28 @@
                     </WrapPanel>
                 </WrapPanel>
             </Border>
-
+            </Grid>
 
         </Grid>
 
         <!-- Editing -->
         <Grid Grid.Column="1" HorizontalAlignment="Right"   >
-            <WrapPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0,50,0,10" >
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,80,4,0" >
                 <!-- ComboBox -->
-                <ComboBox x:Name="cmbChapter"
-                  ItemsSource="{Binding ChapterNames}"
-                  SelectedItem="{Binding SelectedChapterName, Mode=TwoWay}"
-                  Style="{StaticResource ComboBoxDictionaryStyle}"
-                  Margin="5,10"/>
+                <ComboBox ItemsSource="{Binding ChapterNames}"
+                          SelectedItem="{Binding SelectedChapterName, Mode=TwoWay}"
+                          Style="{StaticResource ComboBoxDictionaryStyle}"/>
 
                 <!-- Buttons -->
-                <Button Content="Add chapter" Style="{StaticResource DictionaryButtonStyle}" Margin="0,10,5,0"  Command="{Binding AddChapterCommand}"/>
-                <TextBox Text="{Binding tbAddChapter, Mode=TwoWay}" Style="{StaticResource TextBox_Style}"  Width="200" HorizontalAlignment="Center" Margin="0,0,5,0" MaxLength="30"/>
-                <Button Content="Rename" Style="{StaticResource DictionaryButtonStyle}" Margin="0,10,5,0" Command="{Binding RenameChapterCommand}"/>
-                <TextBox Text="{Binding tbRenameChapter, Mode=TwoWay}" Style="{StaticResource TextBox_Style}" Width="200" HorizontalAlignment="Center"  Margin="0,0,5,0" MaxLength="30"/>
-                <Button x:Name="DeleteChapterButton" Content="Delete chapter" Style="{StaticResource DictionaryButtonStyle}" Margin="0,10,5,0" Command="{Binding DeleteChapterCommand}" />
+                <TextBox Text="{Binding tbAddChapter, Mode=TwoWay}" Style="{StaticResource TextBox_Style}"  Width="200" Margin="0,10,0,0" MaxLength="30"/>
+                <Button Content="Add chapter" Style="{StaticResource DictionaryButtonStyle}"  Command="{Binding AddChapterCommand}" Margin="0,0,0,0" />
+                <TextBox Text="{Binding tbRenameChapter, Mode=TwoWay}" Style="{StaticResource TextBox_Style}" Width="200" Margin="0,10,0,0" MaxLength="30"/>
+                <Button Content="Rename" Style="{StaticResource DictionaryButtonStyle}"  Command="{Binding RenameChapterCommand}"  Margin="0,0,0,0" />
+                <Button Content="Delete chapter" Style="{StaticResource DictionaryButtonStyle}" Command="{Binding DeleteChapterCommand}" />
 
                 <!-- Buttons Yes No -->
                 <WrapPanel x:Name="ConfirmationButtons" Orientation="Horizontal" Width="200"  Visibility="{Binding IsDeletedChapter, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Button x:Name="NoButton" Margin="0,10,95,0" Height="50" Width="50" Background="Transparent" Command="{Binding NoDeleteCommand}">
+                    <Button x:Name="NoButton" Margin="0,10,100,0" Height="50" Width="50" Background="Transparent" Command="{Binding NoDeleteCommand}">
                         <Button.Content>
                             <Image Source="pack://application:,,,/Images/img_no.png"/>
                         </Button.Content>
